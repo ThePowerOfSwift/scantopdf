@@ -1,7 +1,7 @@
 #!/bin/bash
 # Works around ImageMagick's stupid "NOMNOMNOM MEMORY" problem.
 
-if [ -e "*.jpg" ]
+if [ "`ls *.jpg 2> /dev/null | wc -l`" != "0" ]
 then
     echo WARNING: This directory contains existing JPEGs. Quitting.
     exit
