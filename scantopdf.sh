@@ -16,10 +16,17 @@ do
     echo Converting and resizing $i...
     convert -resize 50% $i `echo $i | cut -d"." -f 1`.jpg
 done
-echo Conversion complete. Creating PDF at 118DPI...
-convert -density 118 *.jpg unoptimised.pdf
-echo PDF created. Optimising PDF...
-gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -sPAPERSIZE=a5 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf unoptimised.pdf
+echo Conversion complete. Creating PDFs at 118DPI...
+for i in `ls *.jpg`
+do
+    convert -density 118 $i `echo $i | cut -d"." -f 1`.pdf
+done
+echo PDFs created. Merging and optimising PDFs...
+gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 -sPAPERSIZE=a5 -dNOPAUSE -dQUIET -dBATCH -sOutputFile=output.pdf *.pdf
 echo PDF optimised. Tidying temporary files...
-rm *.jpg unoptimised.pdf
+rm *.jpg
+for i in `ls *.png`
+do
+    rm `echo $i | cut -d"." -f 1`.pdf
+done
 echo Finished. Final PDF file size: `ls -lh output.pdf | cut -d" " -f 5`
