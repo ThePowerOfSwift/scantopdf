@@ -10,6 +10,7 @@ if [ -e "output.pdf" ]
 then
     echo WARNING: Output.pdf already exists. Quitting.
     exit
+fi
 for i in `ls *.png`
 do
     echo Converting and resizing $i...
