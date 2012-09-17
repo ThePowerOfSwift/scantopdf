@@ -1,6 +1,15 @@
 #!/bin/bash
 # Works around ImageMagick's stupid "NOMNOMNOM MEMORY" problem.
 
+if [ -e "*.jpg" ]
+then
+    echo WARNING: This directory contains existing JPEGs. Quitting.
+    exit
+fi
+if [ -e "output.pdf" ]
+then
+    echo WARNING: Output.pdf already exists. Quitting.
+    exit
 for i in `ls *.png`
 do
     echo Converting and resizing $i...
