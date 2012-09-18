@@ -11,6 +11,12 @@ then
     echo WARNING: Output.pdf already exists. Quitting.
     exit
 fi
+if [ "`ls *.png 2> /dev/null | wc -l`" = "0" ]
+then
+    echo WARNING: No PNGs found - nothing to do! Quitting.
+    exit
+fi
+
 for i in `ls *.png`
 do
     echo Converting and resizing $i...
