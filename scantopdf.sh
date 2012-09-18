@@ -17,6 +17,7 @@ then
     exit
 fi
 
+echo Processing `ls *.png 2> /dev/null | wc -l` PNG files into a single PDF...
 for i in `ls *.png`
 do
     echo Converting and resizing $i...
