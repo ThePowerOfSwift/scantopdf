@@ -16,6 +16,12 @@ then
     echo WARNING: No PNGs found - nothing to do! Quitting.
     exit
 fi
+if [ "`ls *.pdf 2> /dev/null | wc -l`" != "0" ]
+then
+    echo WARNING: This directory contains existing PDFs. Quitting.
+    exit
+fi
+
 
 echo Processing `ls *.png 2> /dev/null | wc -l` PNG files into a single PDF...
 for i in `ls *.png`
